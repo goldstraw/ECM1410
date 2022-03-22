@@ -9,13 +9,7 @@
 ## Development Log
 | Date     | Time  | Duration (h) | 710008606                  | 710003076                  |
 |----------|-------|--------------|----------------------------|----------------------------|
-| 21/02/22 | 13:30 | 1            | Project Structure Planning | Project Structure Planning |
-| 22/02/22 | 14:30 | 2            | Driver                     | Observer                   |
-| 24/02/22 | 15:30 | 2            | Driver                     | Observer                   |
-| 25/02/22 | 12:30 | 1            | Observer                   | Driver                     |
-| 26/02/22 | 14:30 | 2            | Observer                   | Driver                     |
-| 28/02/22 | 13:30 | 1            | Driver                     | Observer                   |
-| 28/02/22 | 14:30 | 1            | Observer                   | Driver                     |
+| 28/02/22 | 13:30 | 1            | Project Structure Planning | Project Structure Planning |
 | 01/03/22 | 14:30 | 2            | Driver                     | Observer                   |
 | 03/03/22 | 15:30 | 2            | Driver                     | Observer                   |
 | 04/03/22 | 12:30 | 1            | Observer                   | Driver                     |
