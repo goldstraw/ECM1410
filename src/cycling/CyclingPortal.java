@@ -1,6 +1,12 @@
 package cycling;
 
 import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -399,20 +405,33 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public void eraseCyclingPortal() {
-		// TODO Auto-generated method stub
-
+		this.nextId = 0;
+		this.teams.clear();
+		this.races.clear();
 	}
 
 	@Override
 	public void saveCyclingPortal(String filename) throws IOException {
-		// TODO Auto-generated method stub
+		FileOutputStream fileOutputStream = new FileOutputStream(filename);
+		BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
 
+		ObjectOutputStream objectOutputStream = new ObjectOutputStream(bufferedOutputStream);
+
+		objectOutputStream.writeObject(this);
+		objectOutputStream.close();
 	}
 
 	@Override
 	public void loadCyclingPortal(String filename) throws IOException, ClassNotFoundException {
-		// TODO Auto-generated method stub
+		FileInputStream fileInputStream = new FileInputStream(filename);
+		BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+		ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
+		CyclingPortal loadedCyclingPortal = (CyclingPortal)objectInputStream.readObject();
+		objectInputStream.close();
 
+		this.nextId = loadedCyclingPortal.nextId;
+		this.teams = loadedCyclingPortal.teams;
+		this.races = loadedCyclingPortal.races;
 	}
 
 	@Override
