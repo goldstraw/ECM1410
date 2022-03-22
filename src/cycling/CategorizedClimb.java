@@ -11,6 +11,12 @@ public class CategorizedClimb extends Segment {
         this.averageGradient = averageGradient;
     }
 
+    /**
+	 * Get the length of the climb.
+	 * 
+	 * @return The length of the climb.
+	 * 
+	 */
     public double getLength() {
         return this.length;
     }

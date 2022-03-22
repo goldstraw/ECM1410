@@ -15,14 +15,32 @@ public class Rider implements Serializable {
         this.yearOfBirth = yearOfBirth;
     }
 
+    /**
+	 * Get the rider's team ID.
+	 * 
+	 * @return The rider's team ID.
+	 * 
+	 */
     public int getTeamId() {
         return this.teamId;
     }
 
+    /**
+	 * Get the rider's ID.
+	 * 
+	 * @return The rider's ID.
+	 * 
+	 */
     public int getId() {
         return this.riderId;
     }
 
+    /**
+	 * Get the rider's name.
+	 * 
+	 * @return The rider's name.
+	 * 
+	 */
     public String getName() {
         return this.name;
     }

@@ -14,18 +14,42 @@ public class Segment {
         this.type = type;
     }
 
+    /**
+	 * Get the segment's stage ID.
+	 * 
+	 * @return The segment's stage ID.
+	 * 
+	 */
     public int getStageId() {
         return this.stageId;
     }
 
+    /**
+	 * Get the segment's ID.
+	 * 
+	 * @return The segment's ID.
+	 * 
+	 */
     public int getId() {
         return this.segmentId;
     }
 
+    /**
+	 * Get the segment's location.
+	 * 
+	 * @return The segment's location.
+	 * 
+	 */
     public double getLocation() {
         return this.location;
     }
 
+    /**
+	 * Get the segment's type.
+	 * 
+	 * @return The SegmentType of the segment.
+	 * 
+	 */
     public SegmentType getSegmentType() {
         return this.type;
     }
