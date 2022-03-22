@@ -12,13 +12,10 @@ import java.time.LocalTime;
 
 import java.util.HashMap;
 
-
-
 /**
- * BadCyclingPortal is a minimally compiling, but non-functioning implementor
- * of the CyclingPortalInterface interface.
+ * CyclingPortal implements all of the functions in the CyclingPortalInterface.
  * 
- * @author Diogo Pacheco
+ * @author Charlie Goldstraw, Charlie MacDonald-Smith
  * @version 1.0
  *
  */
@@ -28,6 +25,15 @@ public class CyclingPortal implements CyclingPortalInterface {
 	private HashMap<Integer, Race> races = new HashMap<Integer, Race>();
 	private HashMap<Integer, Team> teams = new HashMap<Integer, Team>();
 
+	/**
+	 * Get a Race object by its ID.
+	 * 
+	 * @param id Race's ID .
+	 * @throws IDNotRecognisedException If the ID does not match to any race in the
+	 *                                  system.
+	 * @return The Race object with the given ID.
+	 * 
+	 */
 	public Race getRace(int id) throws IDNotRecognisedException {
 		if (!races.containsKey(id)) {
 			String errorMessage = String.format("Race ID '%d' did not exist.", id);
@@ -36,6 +42,15 @@ public class CyclingPortal implements CyclingPortalInterface {
 		return races.get(id);
 	}
 
+	/**
+	 * Get a Stage object by its ID.
+	 * 
+	 * @param id Stage's ID .
+	 * @throws IDNotRecognisedException If the ID does not match to any stage in the
+	 *                                  system.
+	 * @return The Stage object with the given ID.
+	 * 
+	 */
 	public Stage getStage(int id) throws IDNotRecognisedException {
 		for (Race race : races.values()) {
 			for (Stage stage : race.getStages()) {
@@ -48,6 +63,15 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException(errorMessage);
 	}
 
+	/**
+	 * Get a Segment object by its ID.
+	 * 
+	 * @param id Segment's ID .
+	 * @throws IDNotRecognisedException If the ID does not match to any segment in the
+	 *                                  system.
+	 * @return The Segment object with the given ID.
+	 * 
+	 */
 	public Segment getSegment(int id) throws IDNotRecognisedException {
 		for (Race race : races.values()) {
 			for (Stage stage : race.getStages()) {
@@ -62,6 +86,15 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException(errorMessage);
 	}
 
+	/**
+	 * Get a Team object by its ID.
+	 * 
+	 * @param id Team's ID .
+	 * @throws IDNotRecognisedException If the ID does not match to any team in the
+	 *                                  system.
+	 * @return The Team object with the given ID.
+	 * 
+	 */
 	public Team getTeam(int id) throws IDNotRecognisedException {
 		if (!teams.containsKey(id)) {
 			String errorMessage = String.format("Team ID '%d' did not exist.", id);
@@ -70,6 +103,15 @@ public class CyclingPortal implements CyclingPortalInterface {
 		return teams.get(id);
 	}
 
+	/**
+	 * Get a Rider object by its ID.
+	 * 
+	 * @param id Rider's ID .
+	 * @throws IDNotRecognisedException If the ID does not match to any rider in the
+	 *                                  system.
+	 * @return The Rider object with the given ID.
+	 * 
+	 */
 	public Rider getRider(int id) throws IDNotRecognisedException {
 		for (Team team : teams.values()) {
 			for (Rider rider : team.getRiders()) {
@@ -82,6 +124,15 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException(errorMessage);
 	}
 
+	/**
+	 * Perform checks upon a name to ensure it is unique in the system, it is not empty,
+	 * it is shorter than 30 characters, and it doesn't have any spaces.
+	 * 
+	 * @param name Name to validate.
+	 * @throws IllegalNameException If the name already exists in the system.
+	 * @throws InvalidNameException If the name does not match the formatting required.
+	 * 
+	 */
 	public void validateName(String name) throws IllegalNameException, InvalidNameException {
 		boolean usedName = false;
 		for (Race race : races.values()) {
@@ -120,6 +171,21 @@ public class CyclingPortal implements CyclingPortalInterface {
 		}
 	}
 
+	/**
+	 * Check if a proposed segment is within the stage's boundaries, and the relevant
+	 * stage is not a time trial or "waiting for results".
+	 * 
+	 * @param stageId The ID of the stage.
+	 * @param location The location of the end of segment.
+	 * @param type The SegmentType of the proposed segment.
+	 * @param length The length of the segment.
+	 * @throws IDNotRecognisedException If the ID does not match to any stage in the
+	 *                                  system.
+	 * @throws InvalidLocationException If the segment is not within the stage's bounds.
+	 * @throws InvalidStageStateException If the stage is "waiting for results".
+	 * @throws InvalidStageTypeException If the stage is a time trial.
+	 * 
+	 */
 	public void validateSegmentAddition(int stageId, Double location, SegmentType type,
 			Double length) throws IDNotRecognisedException, InvalidLocationException, InvalidStageStateException,
 			InvalidStageTypeException {
