@@ -235,6 +235,7 @@ public class Stage implements Serializable {
 	 * 
 	 */
     public long getRiderElapsedTime(int riderId) {
+        assert (this.results.containsKey(riderId));
         LocalTime startTime = this.results.get(riderId).get(0);
         int endIndex = this.segments.size() + 1;
         LocalTime endTime = this.results.get(riderId).get(endIndex);
