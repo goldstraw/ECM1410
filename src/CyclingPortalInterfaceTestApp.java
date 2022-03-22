@@ -816,12 +816,12 @@ public class CyclingPortalInterfaceTestApp {
 		HashMap<String, String> riderAndTeamManagement = riderAndTeamManagementTests();
 		HashMap<String, String> raceAndStageManagement = raceAndStageManagementTests();
 		HashMap<String, String> resultManagement = resultManagementTests();
-		//HashMap<String, String> portalManagement = portalManagementTests();
+		HashMap<String, String> portalManagement = portalManagementTests();
 		
 		printTestResults("RIDER AND TEAM MANAGEMENT", riderAndTeamManagement);
 		printTestResults("RACE AND STAGE MANAGEMENT", raceAndStageManagement);
 		printTestResults("RESULT MANAGEMENT", resultManagement);
-		//printTestResults("PORTAL MANAGEMENT", portalManagement);
+		printTestResults("PORTAL MANAGEMENT", portalManagement);
 	}
 
 }
