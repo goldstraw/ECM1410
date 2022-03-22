@@ -2,6 +2,7 @@ package cycling;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.time.LocalTime;
 
 public class Race implements Serializable {
     private int raceId;
@@ -45,5 +46,62 @@ public class Race implements Serializable {
 
     public String getDescription() {
         return this.description;
+    }
+
+    private int[] getSortedElapsedTimeIndices() {
+		ArrayList<Long> results = new ArrayList<Long>();
+        ArrayList<Integer> sortedIndices = new ArrayList<Integer>();
+        int unsortedIndex = 0;
+        for (Integer riderId : this.stages.get(0).getRidersRanks()) {
+            long elapsedTime = 0;
+            for (Stage stage : this.stages) {
+                elapsedTime += stage.getRiderAdjustedElapsedTime(riderId).toNanoOfDay();
+            }
+            int index = 0;
+            for (index = 0; index < results.size(); index++) {
+                if (results.get(index) > elapsedTime) {
+                    break;
+                }
+            }
+            results.add(index, elapsedTime);
+            sortedIndices.add(index, unsortedIndex);
+            unsortedIndex++;
+        }
+
+        int[] sortedArr = new int[sortedIndices.size()];
+        for (int i = 0; i < sortedIndices.size(); i++) {
+            sortedArr[i] = sortedIndices.get(i).intValue();
+        }
+        return sortedArr;
+    }
+
+    public LocalTime[] getGeneralClassificationTimes() {
+        int[] order = getSortedElapsedTimeIndices();
+        LocalTime[] times = new LocalTime[order.length];
+        int index = 0;
+        for (Integer riderId : this.stages.get(0).getRidersRanks()) {
+            long elapsedTime = 0;
+            for (Stage stage : this.stages) {
+                elapsedTime += stage.getRiderAdjustedElapsedTime(riderId).toNanoOfDay();
+            }
+            times[order[index]] = LocalTime.ofNanoOfDay(elapsedTime);
+            index++;
+        }
+        return times;
+    }
+
+    public int[] getRidersPoints() {
+        int[] order = getSortedElapsedTimeIndices();
+        int[] points = new int[order.length];
+        int index = 0;
+        for (Integer riderId : this.stages.get(0).getRidersRanks()) {
+            int riderPoints = 0;
+            for (Stage stage : this.stages) {
+                riderPoints += stage.getRiderPoints(riderId);
+            }
+            points[order[index]] = riderPoints;
+            index++;
+        }
+        return points;
     }
 }

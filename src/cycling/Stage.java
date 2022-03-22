@@ -167,7 +167,7 @@ public class Stage implements Serializable {
 		return LocalTime.ofNanoOfDay(elapsedTime);
     }
 
-    public int[] getSortedElapsedTimeIndices() {
+    private int[] getSortedElapsedTimeIndices() {
 		ArrayList<Long> results = new ArrayList<Long>();
         ArrayList<Integer> sortedIndices = new ArrayList<Integer>();
         int unsortedIndex = 0;
@@ -253,6 +253,17 @@ public class Stage implements Serializable {
         }
 
         return points;
+    }
+
+    public int getRiderPoints(int riderId) {
+        int[] ranks = getRidersRanks();
+        int i;
+        for (i = 0; i < ranks.length; i++) {
+            if (ranks[i] == riderId) {
+                break;
+            }
+        }
+        return getRidersPoints()[i];
     }
 
     public int[] getRidersMountainPoints() {

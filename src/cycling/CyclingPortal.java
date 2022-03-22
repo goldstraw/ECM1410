@@ -417,20 +417,32 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public void removeRaceByName(String name) throws NameNotRecognisedException {
-		// TODO Auto-generated method stub
+		boolean found = false;
+		for (Race race : races.values()) {
+			if (race.getName().equals(name)) {
+				races.remove(race.getId());
+				found = true;
+				break;
+			}
+		}
 
+		if (!found) {
+			String errorMessage = String.format("Race name '%s' did not exist.", name);
+			throw new NameNotRecognisedException(errorMessage);
+		} else {
+		}
 	}
 
 	@Override
 	public LocalTime[] getGeneralClassificationTimesInRace(int raceId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-		return null;
+		Race race = getRace(raceId);
+		return race.getGeneralClassificationTimes();
 	}
 
 	@Override
 	public int[] getRidersPointsInRace(int raceId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-		return null;
+		Race race = getRace(raceId);
+		return race.getRidersPoints();
 	}
 
 	@Override
