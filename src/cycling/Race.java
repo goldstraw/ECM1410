@@ -16,26 +16,62 @@ public class Race implements Serializable {
         this.name = name;
     }
 
+    /**
+	 * Get the name of the race.
+	 * 
+	 * @return The name of the race.
+	 * 
+	 */
     public String getName() {
         return this.name;
     }
 
+    /**
+	 * Get the ID of the race.
+	 * 
+	 * @return The ID of the race.
+	 * 
+	 */
     public int getId() {
         return this.raceId;
     }
     
+    /**
+	 * Add a stage to the race.
+	 * 
+	 * @param id Stage object to add.
+	 * 
+	 */
     public void addStage(Stage stage) {
         this.stages.add(stage);
     }
 
+    /**
+	 * Removes a stage from the race.
+	 * 
+	 * @param id Stage object to remove.
+	 * 
+	 */
     public void removeStage(Stage stage) {
         this.stages.remove(stage);
     }
 
+    /**
+	 * Returns a list of stages in the race
+	 * 
+	 * @return A list containing the race's stages.
+	 * 
+	 */
     public Stage[] getStages() {
         return this.stages.toArray(new Stage[0]);
     }
 
+    /**
+	 * Returns a list of stage IDs in the race
+	 * 
+	 * @return A list containing the race's stages' IDs.
+	 * 
+	 */
     public int[] getStageIds() {
         int[] stageIds = new int[this.stages.size()];
         for (int i = 0; i < stageIds.length; i++) {
@@ -44,10 +80,25 @@ public class Race implements Serializable {
         return stageIds;
     }
 
+    /**
+	 * Returns the description of the race
+	 * 
+	 * @return A String of the description of the race.
+	 * 
+	 */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+	 * Return the array of indices which sorts the riders by their
+     * elapsed time when accessed in the order of the first stage's
+     * results.
+	 * 
+	 * @return An integer array containing the indices which sort
+     * the riders by elapsed time.
+	 * 
+	 */
     private int[] getSortedElapsedTimeIndices() {
 		ArrayList<Long> results = new ArrayList<Long>();
         ArrayList<Integer> sortedIndices = new ArrayList<Integer>();
@@ -75,6 +126,13 @@ public class Race implements Serializable {
         return sortedArr;
     }
 
+    /**
+	 * Return the array of general classification times for riders
+     * sorted by the riders' elapsed times.
+	 * 
+	 * @return An LocalTime array containing the GC times of the riders.
+	 * 
+	 */
     public LocalTime[] getGeneralClassificationTimes() {
         int[] order = getSortedElapsedTimeIndices();
         LocalTime[] times = new LocalTime[order.length];
@@ -90,6 +148,13 @@ public class Race implements Serializable {
         return times;
     }
 
+    /**
+	 * Return the array of points for riders sorted by the riders'
+     * elapsed times.
+	 * 
+	 * @return A LocalTime array containing the points of the riders.
+	 * 
+	 */
     public int[] getRidersPoints() {
         int[] order = getSortedElapsedTimeIndices();
         int[] points = new int[order.length];
@@ -105,6 +170,13 @@ public class Race implements Serializable {
         return points;
     }
 
+    /**
+	 * Return the array of mountain points for riders
+     * sorted by the riders' elapsed times.
+	 * 
+	 * @return An int array containing the mountain points of the riders.
+	 * 
+	 */
     public int[] getRidersMountainPoints() {
         int[] order = getSortedElapsedTimeIndices();
         int[] points = new int[order.length];
@@ -120,6 +192,12 @@ public class Race implements Serializable {
         return points;
     }
 
+    /**
+	 * Return the array of rider IDs sorted by the riders' elapsed times.
+	 * 
+	 * @return An int array containing the sorted rider IDs.
+	 *
+	 */
     public int[] getRidersGeneralClassificationRank() {
         int[] order = getSortedElapsedTimeIndices();
         int[] ranks = new int[order.length];
@@ -131,6 +209,13 @@ public class Race implements Serializable {
         return ranks;
     }
 
+    /**
+	 * Return the array of rider IDs sorted in descending order
+     * by the riders' points.
+	 * 
+	 * @return An int array containing the sorted rider IDs.
+	 *
+	 */
     public int[] getRidersPointClassificationRank() {
 		ArrayList<Integer> points = new ArrayList<Integer>();
         ArrayList<Integer> sortedIds = new ArrayList<Integer>();
@@ -159,6 +244,13 @@ public class Race implements Serializable {
         return sortedArr;
     }
 
+    /**
+	 * Return the array of rider IDs sorted in descending order
+     * by the riders' mountain points.
+	 * 
+	 * @return An int array containing the sorted rider IDs.
+	 *
+	 */
     public int[] getRidersMountainPointClassificationRank() {
         ArrayList<Integer> points = new ArrayList<Integer>();
         ArrayList<Integer> sortedIds = new ArrayList<Integer>();

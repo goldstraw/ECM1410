@@ -15,18 +15,42 @@ public class Team implements Serializable {
         this.description = description;
     }
 
+    /**
+	 * Add a Rider to the team.
+	 * 
+	 * @param rider The Rider object to add.
+	 * 
+	 */
     public void addRider(Rider rider) {
         this.riders.add(rider);
     }
 
+    /**
+	 * Remove a Rider from the team.
+	 * 
+	 * @param rider The Rider object to remove.
+	 * 
+	 */
     public void removeRider(Rider rider) {
         this.riders.remove(rider);
     }
 
+    /**
+	 * Returns an array of riders in the team.
+     *
+	 * @return The Rider array containing the team riders.
+	 * 
+	 */
     public Rider[] getRiders() {
         return this.riders.toArray(new Rider[0]);
     }
 
+    /**
+	 * Get an array of the teams rider IDs.
+	 * 
+	 * @return The IDs of the riders in an array.
+	 * 
+	 */
     public int[] getRiderIds() {
         int[] riderIds = new int[this.riders.size()];
         for (int i = 0; i < riderIds.length; i++) {
@@ -35,10 +59,22 @@ public class Team implements Serializable {
         return riderIds;
     }
 
+    /**
+	 * Get the name of the team.
+	 * 
+	 * @return The String containing the name of the team.
+	 * 
+	 */
     public String getName() {
         return this.name;
     }
 
+    /**
+	 * Get the ID of the team.
+	 * 
+	 * @return The int of the team's ID.
+	 * 
+	 */
     public int getId() {
         return this.teamId;
     }
