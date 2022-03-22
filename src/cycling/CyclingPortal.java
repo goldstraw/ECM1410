@@ -28,7 +28,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	/**
 	 * Get a Race object by its ID.
 	 * 
-	 * @param id Race's ID .
+	 * @param id Race's ID.
 	 * @throws IDNotRecognisedException If the ID does not match to any race in the
 	 *                                  system.
 	 * @return The Race object with the given ID.
@@ -45,7 +45,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	/**
 	 * Get a Stage object by its ID.
 	 * 
-	 * @param id Stage's ID .
+	 * @param id Stage's ID.
 	 * @throws IDNotRecognisedException If the ID does not match to any stage in the
 	 *                                  system.
 	 * @return The Stage object with the given ID.
@@ -66,7 +66,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	/**
 	 * Get a Segment object by its ID.
 	 * 
-	 * @param id Segment's ID .
+	 * @param id Segment's ID.
 	 * @throws IDNotRecognisedException If the ID does not match to any segment in the
 	 *                                  system.
 	 * @return The Segment object with the given ID.
@@ -89,7 +89,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	/**
 	 * Get a Team object by its ID.
 	 * 
-	 * @param id Team's ID .
+	 * @param id Team's ID.
 	 * @throws IDNotRecognisedException If the ID does not match to any team in the
 	 *                                  system.
 	 * @return The Team object with the given ID.
@@ -106,7 +106,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	/**
 	 * Get a Rider object by its ID.
 	 * 
-	 * @param id Rider's ID .
+	 * @param id Rider's ID.
 	 * @throws IDNotRecognisedException If the ID does not match to any rider in the
 	 *                                  system.
 	 * @return The Rider object with the given ID.
