@@ -723,7 +723,7 @@ public class CyclingPortalInterfaceTestApp {
 			e.printStackTrace(new PrintWriter(sw));
 			generalClassificationTimesEmpty += "\n" + sw.toString();
 		}
-		results.put("generalClassificationTimesEmpty", generalClassificationTimesCorrect);
+		results.put("generalClassificationTimesEmpty", generalClassificationTimesEmpty);
 		
 		String ridersPointsInRaceCorrect = "FAILED";
 		try {
@@ -753,6 +753,110 @@ public class CyclingPortalInterfaceTestApp {
 			ridersPointsInRaceCorrect += "\n" + sw.toString();
 		}
 		results.put("ridersPointsInRaceCorrect", ridersPointsInRaceCorrect);
+
+		String ridersMountainPointsInRaceCorrect = "FAILED";
+		try {
+			int newTeam = portal.createTeam("TeamD", "Team Description");
+			int newRider1 = portal.createRider(newTeam, "RiderO", 2000);
+			int newRider2 = portal.createRider(newTeam, "RiderP", 2000);
+			int newRace = portal.createRace("RaceD", "Race Description");
+			int newStage = portal.addStageToRace(newRace, "StageG", "Stage Description", 10, LocalDateTime.now(), StageType.FLAT);
+			int newSegment = portal.addCategorizedClimbToStage(newStage, 7D, SegmentType.C4, 4D, 1D);
+			int newSegment2 = portal.addCategorizedClimbToStage(newStage, 8D, SegmentType.HC, 4D, 1D);
+			portal.concludeStagePreparation(newStage);
+			LocalTime[] checkpoints1 = {LocalTime.of(14, 0, 0), LocalTime.of(14, 30, 0), LocalTime.of(14, 40, 0), LocalTime.of(15, 20, 5)};
+			portal.registerRiderResultsInStage(newStage, newRider1, checkpoints1);
+			LocalTime[] checkpoints2 = {LocalTime.of(14, 0, 0), LocalTime.of(14, 35, 0), LocalTime.of(14, 36, 0), LocalTime.of(15, 20, 0)};
+			portal.registerRiderResultsInStage(newStage, newRider2, checkpoints2);
+			int[] points = portal.getRidersMountainPointsInRace(newRace);
+			if (points[0] == 20 && points[1] == 16) {
+				ridersMountainPointsInRaceCorrect = "Passed";
+			}
+
+		} catch (InvalidLocationException | InvalidStageTypeException | InvalidLengthException | InvalidNameException | IllegalNameException | IDNotRecognisedException | InvalidStageStateException | DuplicatedResultException | InvalidCheckpointsException e) {
+			e.printStackTrace(new PrintWriter(sw));
+			ridersMountainPointsInRaceCorrect += "\n" + sw.toString();
+		}
+		results.put("ridersMountainPointsInRaceCorrect", ridersMountainPointsInRaceCorrect);
+
+		String ridersGeneralClassificationRankCorrect = "FAILED";
+		try {
+			int newTeam = portal.createTeam("TeamE", "Team Description");
+			int newRider1 = portal.createRider(newTeam, "RiderQ", 2000);
+			int newRider2 = portal.createRider(newTeam, "RiderR", 2000);
+			int newRace = portal.createRace("RaceE", "Race Description");
+			int newStage = portal.addStageToRace(newRace, "StageH", "Stage Description", 10, LocalDateTime.now(), StageType.FLAT);
+			int newSegment = portal.addCategorizedClimbToStage(newStage, 7D, SegmentType.C4, 4D, 1D);
+			int newSegment2 = portal.addCategorizedClimbToStage(newStage, 8D, SegmentType.HC, 4D, 1D);
+			portal.concludeStagePreparation(newStage);
+			LocalTime[] checkpoints1 = {LocalTime.of(14, 0, 0), LocalTime.of(14, 30, 0), LocalTime.of(14, 40, 0), LocalTime.of(15, 20, 5)};
+			portal.registerRiderResultsInStage(newStage, newRider1, checkpoints1);
+			LocalTime[] checkpoints2 = {LocalTime.of(14, 0, 0), LocalTime.of(14, 35, 0), LocalTime.of(14, 36, 0), LocalTime.of(15, 20, 0)};
+			portal.registerRiderResultsInStage(newStage, newRider2, checkpoints2);
+			int[] ranks = portal.getRidersGeneralClassificationRank(newRace);
+			if (ranks[0] == newRider2 && ranks[1] == newRider1) {
+				ridersGeneralClassificationRankCorrect = "Passed";
+			}
+
+		} catch (InvalidLocationException | InvalidStageTypeException | InvalidLengthException | InvalidNameException | IllegalNameException | IDNotRecognisedException | InvalidStageStateException | DuplicatedResultException | InvalidCheckpointsException e) {
+			e.printStackTrace(new PrintWriter(sw));
+			ridersGeneralClassificationRankCorrect += "\n" + sw.toString();
+		}
+		results.put("ridersGeneralClassificationRankCorrect", ridersGeneralClassificationRankCorrect);
+
+		String ridersPointsRanksCorrect = "FAILED";
+		try {
+			int newTeam = portal.createTeam("TeamF", "Team Description");
+			int newRider1 = portal.createRider(newTeam, "RiderS", 2000);
+			int newRider2 = portal.createRider(newTeam, "RiderT", 2000);
+			int newRace = portal.createRace("RaceF", "Race Description");
+			int newStage = portal.addStageToRace(newRace, "StageI", "Stage Description", 10, LocalDateTime.now(), StageType.FLAT);
+			int newStage2 = portal.addStageToRace(newRace, "StageJ", "Stage Description", 10, LocalDateTime.now(), StageType.FLAT);
+			portal.concludeStagePreparation(newStage);
+			portal.concludeStagePreparation(newStage2);
+			LocalTime[] checkpoints1 = {LocalTime.of(14, 0, 0), LocalTime.of(15, 20, 5)};
+			portal.registerRiderResultsInStage(newStage, newRider1, checkpoints1);
+			LocalTime[] checkpoints2 = {LocalTime.of(14, 0, 0), LocalTime.of(15, 20, 0)};
+			portal.registerRiderResultsInStage(newStage, newRider2, checkpoints2);
+			LocalTime[] checkpoints3 = {LocalTime.of(14, 0, 0), LocalTime.of(15, 10, 0)};
+			portal.registerRiderResultsInStage(newStage2, newRider1, checkpoints3);
+			LocalTime[] checkpoints4 = {LocalTime.of(14, 0, 0), LocalTime.of(15, 0, 0)};
+			portal.registerRiderResultsInStage(newStage2, newRider2, checkpoints4);
+			int[] ranks = portal.getRidersPointClassificationRank(newRace);
+			if (ranks[0] == newRider2 && ranks[1] == newRider1) {
+				ridersPointsRanksCorrect = "Passed";
+			}
+
+		} catch (InvalidLengthException | InvalidNameException | IllegalNameException | IDNotRecognisedException | InvalidStageStateException | DuplicatedResultException | InvalidCheckpointsException e) {
+			e.printStackTrace(new PrintWriter(sw));
+			ridersPointsRanksCorrect += "\n" + sw.toString();
+		}
+		results.put("ridersPointsRanksCorrect", ridersPointsRanksCorrect);
+
+		String ridersMountainPointClassificationRankCorrect = "FAILED";
+		try {
+			int newTeam = portal.createTeam("TeamG", "Team Description");
+			int newRider1 = portal.createRider(newTeam, "RiderU", 2000);
+			int newRider2 = portal.createRider(newTeam, "RiderV", 2000);
+			int newRace = portal.createRace("RaceG", "Race Description");
+			int newStage = portal.addStageToRace(newRace, "StageK", "Stage Description", 10, LocalDateTime.now(), StageType.FLAT);
+			int newSegment = portal.addCategorizedClimbToStage(newStage, 7D, SegmentType.C4, 4D, 1D);
+			int newSegment2 = portal.addCategorizedClimbToStage(newStage, 8D, SegmentType.HC, 4D, 1D);
+			portal.concludeStagePreparation(newStage);
+			LocalTime[] checkpoints1 = {LocalTime.of(14, 0, 0), LocalTime.of(14, 30, 0), LocalTime.of(14, 40, 0), LocalTime.of(15, 20, 5)};
+			portal.registerRiderResultsInStage(newStage, newRider1, checkpoints1);
+			LocalTime[] checkpoints2 = {LocalTime.of(14, 0, 0), LocalTime.of(14, 35, 0), LocalTime.of(14, 36, 0), LocalTime.of(15, 20, 0)};
+			portal.registerRiderResultsInStage(newStage, newRider2, checkpoints2);
+			int[] ranks = portal.getRidersMountainPointClassificationRank(newRace);
+			if (ranks[0] == newRider2 && ranks[1] == newRider1) {
+				ridersMountainPointClassificationRankCorrect = "Passed";
+			}
+
+		} catch (InvalidLocationException | InvalidStageTypeException | InvalidLengthException | InvalidNameException | IllegalNameException | IDNotRecognisedException | InvalidStageStateException | DuplicatedResultException | InvalidCheckpointsException e) {
+			e.printStackTrace(new PrintWriter(sw));
+			ridersMountainPointClassificationRankCorrect += "\n" + sw.toString();
+		}
+		results.put("ridersMountainPointClassificationRankCorrect", ridersMountainPointClassificationRankCorrect);
 
 		return results;
 	}

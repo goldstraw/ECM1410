@@ -294,4 +294,15 @@ public class Stage implements Serializable {
 
         return points;
     }
+
+    public int getRiderMountainPoints(int riderId) {
+        int[] ranks = getRidersRanks();
+        int i;
+        for (i = 0; i < ranks.length; i++) {
+            if (ranks[i] == riderId) {
+                break;
+            }
+        }
+        return getRidersMountainPoints()[i];
+    }
 }

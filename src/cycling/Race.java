@@ -104,4 +104,86 @@ public class Race implements Serializable {
         }
         return points;
     }
+
+    public int[] getRidersMountainPoints() {
+        int[] order = getSortedElapsedTimeIndices();
+        int[] points = new int[order.length];
+        int index = 0;
+        for (Integer riderId : this.stages.get(0).getRidersRanks()) {
+            int riderPoints = 0;
+            for (Stage stage : this.stages) {
+                riderPoints += stage.getRiderMountainPoints(riderId);
+            }
+            points[order[index]] = riderPoints;
+            index++;
+        }
+        return points;
+    }
+
+    public int[] getRidersGeneralClassificationRank() {
+        int[] order = getSortedElapsedTimeIndices();
+        int[] ranks = new int[order.length];
+        int index = 0;
+        for (Integer riderId : this.stages.get(0).getRidersRanks()) {
+            ranks[order[index]] = riderId;
+            index++;
+        }
+        return ranks;
+    }
+
+    public int[] getRidersPointClassificationRank() {
+		ArrayList<Integer> points = new ArrayList<Integer>();
+        ArrayList<Integer> sortedIds = new ArrayList<Integer>();
+        for (Integer riderId : this.stages.get(0).getRidersRanks()) {
+            // Calculate points
+            int riderPoints = 0;
+            for (Stage stage : this.stages) {
+                riderPoints += stage.getRiderPoints(riderId);
+            }
+            // Find sorted (descending) position in arraylist
+            int index = 0;
+            for (index = 0; index < points.size(); index++) {
+                if (points.get(index) < riderPoints) {
+                    break;
+                }
+            }
+            // Insert into arraylist
+            points.add(index, riderPoints);
+            sortedIds.add(index, riderId);
+        }
+
+        int[] sortedArr = new int[sortedIds.size()];
+        for (int i = 0; i < sortedIds.size(); i++) {
+            sortedArr[i] = sortedIds.get(i).intValue();
+        }
+        return sortedArr;
+    }
+
+    public int[] getRidersMountainPointClassificationRank() {
+        ArrayList<Integer> points = new ArrayList<Integer>();
+        ArrayList<Integer> sortedIds = new ArrayList<Integer>();
+        for (Integer riderId : this.stages.get(0).getRidersRanks()) {
+            // Calculate points
+            int riderPoints = 0;
+            for (Stage stage : this.stages) {
+                riderPoints += stage.getRiderMountainPoints(riderId);
+            }
+            // Find sorted (descending) position in arraylist
+            int index = 0;
+            for (index = 0; index < points.size(); index++) {
+                if (points.get(index) < riderPoints) {
+                    break;
+                }
+            }
+            // Insert into arraylist
+            points.add(index, riderPoints);
+            sortedIds.add(index, riderId);
+        }
+
+        int[] sortedArr = new int[sortedIds.size()];
+        for (int i = 0; i < sortedIds.size(); i++) {
+            sortedArr[i] = sortedIds.get(i).intValue();
+        }
+        return sortedArr;
+    }
 }
