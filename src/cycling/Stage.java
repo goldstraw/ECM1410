@@ -7,6 +7,14 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.ArrayList;
 
+/**
+ * Class to represent stages in races.
+ * 
+ * @author Charlie Goldstraw, Charlie MacDonald-Smith
+ * @version 1.0
+ *
+ */
+
 public class Stage implements Serializable {
     private int raceId;
     private int stageId;

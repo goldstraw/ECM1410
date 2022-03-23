@@ -2,6 +2,14 @@ package cycling;
 
 import java.io.Serializable;
 
+/**
+ * Class to represent riders in teams.
+ * 
+ * @author Charlie Goldstraw, Charlie MacDonald-Smith
+ * @version 1.0
+ *
+ */
+
 public class Rider implements Serializable {
     private int riderId;
     private int teamId;

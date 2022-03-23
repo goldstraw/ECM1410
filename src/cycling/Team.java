@@ -3,6 +3,14 @@ package cycling;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Class to represent teams in the cycling portal.
+ * 
+ * @author Charlie Goldstraw, Charlie MacDonald-Smith
+ * @version 1.0
+ *
+ */
+
 public class Team implements Serializable {
     private int teamId;
     private String name;

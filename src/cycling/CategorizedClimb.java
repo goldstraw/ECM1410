@@ -1,5 +1,12 @@
 package cycling;
 
+/**
+ * Class to represent categorized climb segments in stages.
+ * 
+ * @author Charlie Goldstraw, Charlie MacDonald-Smith
+ * @version 1.0
+ *
+ */
 public class CategorizedClimb extends Segment {
     
     private double length;

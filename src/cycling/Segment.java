@@ -1,5 +1,14 @@
 package cycling;
 
+/**
+ * Class to represent general segments, which is extended by
+ * CategorizedClimb and IntermediateSprint.
+ * 
+ * @author Charlie Goldstraw, Charlie MacDonald-Smith
+ * @version 1.0
+ *
+ */
+
 public class Segment {
 
     private int stageId;

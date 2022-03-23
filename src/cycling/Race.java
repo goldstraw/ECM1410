@@ -4,6 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.time.LocalTime;
 
+/**
+ * Class to represent races in the cycling portal.
+ * 
+ * @author Charlie Goldstraw, Charlie MacDonald-Smith
+ * @version 1.0
+ *
+ */
+
 public class Race implements Serializable {
     private int raceId;
     private String name;
