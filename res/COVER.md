@@ -29,4 +29,3 @@
 | 21/03/22 | 13:30 | 1            | Testing                    | Testing                    |
 | 21/03/22 | 14:30 | 1            | Documentation              | Documentation              |
 | 22/03/22 | 14:30 | 1            | Testing                    | Testing                    |
-| 24/03/22 | 16:30 | 1            | Final testing              | Final testing              |
