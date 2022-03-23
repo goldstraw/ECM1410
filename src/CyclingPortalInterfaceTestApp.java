@@ -865,12 +865,13 @@ public class CyclingPortalInterfaceTestApp {
 		HashMap<String, String> results = new HashMap<String, String>();
 		StringWriter sw = new StringWriter();
 		CyclingPortalInterface savedPortal = new CyclingPortal();
-
+		int savedStage = 0;
 		try {
 			int savedRace = savedPortal.createRace("ValidRace", "This is valid");
-			int savedStage = savedPortal.addStageToRace(savedRace, "ValidStage", "This is valid", 10, LocalDateTime.now(), StageType.FLAT);
+			savedStage = savedPortal.addStageToRace(savedRace, "ValidStage", "This is valid", 10, LocalDateTime.now(), StageType.FLAT);
+			int savedSegment = savedPortal.addIntermediateSprintToStage(savedStage, 5D);
 			int savedTeam = savedPortal.createTeam("savedTeam", "This team will be saved");
-		} catch (InvalidNameException | IDNotRecognisedException | InvalidLengthException | IllegalNameException e) {
+		} catch (InvalidNameException | IDNotRecognisedException | InvalidLengthException | IllegalNameException | InvalidLocationException | InvalidStageStateException | InvalidStageTypeException e) {
 			e.printStackTrace();
 		}
 		String savedCyclingPortalSuccessfully = "FAILED";
@@ -894,9 +895,11 @@ public class CyclingPortalInterfaceTestApp {
 		try {
 			savedPortal.loadCyclingPortal("portal");
 			if (savedPortal.getRaceIds().length == 1 && savedPortal.getTeams().length == 1) {
-				loadedCyclingPortalSuccessfully = "Passed";
+				if (savedPortal.getStageSegments(savedStage).length == 1) {
+					loadedCyclingPortalSuccessfully = "Passed";
+				}
 			}
-		} catch (IOException | ClassNotFoundException e) {
+		} catch (IOException | ClassNotFoundException | IDNotRecognisedException e) {
 			e.printStackTrace(new PrintWriter(sw));
 			loadedCyclingPortalSuccessfully += "\n" + sw.toString();
 		}

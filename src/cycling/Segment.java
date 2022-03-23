@@ -1,5 +1,7 @@
 package cycling;
 
+import java.io.Serializable;
+
 /**
  * Class to represent general segments, which is extended by
  * CategorizedClimb and IntermediateSprint.
@@ -9,7 +11,7 @@ package cycling;
  *
  */
 
-public class Segment {
+public class Segment implements Serializable {
 
     private int stageId;
     private int segmentId;
