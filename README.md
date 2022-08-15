@@ -12,10 +12,3 @@ jar uvf cycling.jar -C src .
 javac -d bin -cp cycling.jar src/CyclingPortalInterfaceTestApp.java
 
 java -ea -cp bin;cycling.jar CyclingPortalInterfaceTestApp
-
-
-## Remaining
-- Add assertions somewhere
-- Line length + formatting
-- cycling.jar
-- Printout of code
